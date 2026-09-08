@@ -1,0 +1,40 @@
+import json
+from google.cloud import bigquery
+from google.oauth2 import service_account
+
+
+# Recupera a credencial do Databricks Secret Scope
+service_account_key = dbutils.secrets.get(
+    scope="gcp-secrets",
+    key="gcp-service-account-json"
+)
+
+# Cria as credenciais diretamente em memória
+credentials = service_account.Credentials.from_service_account_info(
+    json.loads(service_account_key)
+)
+
+# Cria o cliente BigQuery
+client = bigquery.Client(
+    credentials=credentials,
+    project=credentials.project_id
+)
+
+query = """
+SELECT
+    id_municipio,
+    indice_envelhecimento,
+    idade_mediana,
+    populacao,
+    sigla_uf,
+    domicilios,
+    razao_sexo
+FROM `basedosdados.br_ibge_censo_2022.municipio`
+WHERE sigla_uf = 'RJ'
+"""
+
+df = client.query(query).to_dataframe(
+    create_bqstorage_client=False
+)
+
+df.head()
