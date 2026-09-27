@@ -15,5 +15,5 @@ https://console.cloud.google.com/bigquery?ws=!1m4!1m3!3m2!1sbasedosdados!2sbr_ib
 
 Descrição/contexto dos dados:
 
-Informações do censo demográfico de 2022 disponibilizadas através de um banco de dados no Google Cloud através de uma organização não-governamental sem fins lucrativos e open-source que atua para universalizar
+Informações do censo demográfico de 2022 disponibilizadas através de um banco de dados no Google Cloud por uma organização não-governamental sem fins lucrativos e open-source que atua para universalizar
 o acesso a dados chamada “Base dos Dados”.
